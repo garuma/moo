@@ -8,7 +8,7 @@ namespace Moo
 {
 	public class Moo : ManosApp 
 	{
-		const string baseCowDirectory = "/home/jeremie/cows/";
+		static readonly string baseCowDirectory = Path.GetFullPath ("cows");
 
 		StaticContentModule staticContent;
 		string indexPath = Path.Combine ("Content", "html", "index.html");
@@ -40,8 +40,7 @@ namespace Moo
 
 		string ProxyCowsay (string cowPath, string face, string isThink, string columns, string message)
 		{
-			cowPath = baseCowDirectory + cowPath;
-			if (!File.Exists (cowPath))
+			if (string.IsNullOrEmpty (cowPath) || !ValidFile (cowPath = Path.Combine (baseCowDirectory, cowPath)))
 				cowPath = Cowsay.DefaultCowPath;
 
 			Cowsay.Faces f;
@@ -63,6 +62,19 @@ namespace Moo
 		void HtmlServing (IManosContext ctx, string htmlPath)
 		{
 			staticContent.Content (ctx, htmlPath);
+		}
+
+		private bool ValidFile (string path)
+		{
+			try {
+				string full = Path.GetFullPath (path);
+				if (full.StartsWith (baseCowDirectory))
+					return File.Exists (full);
+			} catch {
+				return false;
+			}
+
+			return false;
 		}
 	}
 }

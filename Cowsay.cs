@@ -25,7 +25,9 @@ namespace Moo
 		static readonly char[] smallBorder = { '<', '>' };
 		static readonly char[] longBorder = { '/', '\\', '|', '|', '\\', '/', };
 
-		public const string DefaultCowPath = "/home/jeremie/cows/default.cow";
+		public const string DefaultCowPath = "cows/default.cow";
+
+		static Dictionary<string, string> cowCache = new Dictionary<string, string> ();
 
 		public static string GetIt (string cowPath, Faces face, bool isThink, int columns, string message)
 		{
@@ -121,7 +123,11 @@ namespace Moo
 
 		static string FetchAndFormatCow (string path, string thoughts, string eyes, string tongue)
 		{
-			string cow = File.ReadAllText (path);
+			string cow;
+			if (!cowCache.TryGetValue (path, out cow)) {
+				cow = File.ReadAllText (path);
+				cowCache[path] = cow;
+			}
 
 			return cow.Replace ("$thoughts", thoughts).Replace ("$eyes", eyes).Replace ("$tongue", tongue);
 		}
