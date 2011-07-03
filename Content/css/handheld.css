@@ -1,7 +1,11 @@
 
 * {
-  float: none;       /* Screens are not big enough to account for floats */
-  font-size: 80%;    /* Slightly reducing font size to reduce need to scroll */ 
-  background: #fff;  /*  As much contrast as possible */
+  float: none;
+  font-size: 80%;
   color: #000;
+}
+
+#container {
+	width: 100%;
+	margin-bottom: 2em;
 }
