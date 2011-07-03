@@ -1,5 +1,6 @@
 
 using Manos;
+using Manos.Http;
 
 using System;
 using System.IO;
@@ -54,7 +55,7 @@ namespace Moo
 				cols = 40;
 
 			message = message.Trim ();
-			message = string.IsNullOrEmpty (message) ? "Moo powered by Manos" : message;
+			message = string.IsNullOrEmpty (message) ? "Moo powered by Manos" : HttpUtility.HtmlDecode (message);
 
 			return Cowsay.GetIt (cowPath, f, isTk, cols, message);
 		}
