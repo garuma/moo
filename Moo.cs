@@ -4,12 +4,14 @@ using Manos.Http;
 
 using System;
 using System.IO;
+using System.Text;
 
 namespace Moo 
 {
 	public class Moo : ManosApp 
 	{
 		static readonly string baseCowDirectory = Path.GetFullPath ("cows");
+		static readonly Encoding encoding = new UTF8Encoding ();
 
 		StaticContentModule staticContent;
 		string indexPath = Path.Combine ("Content", "html", "index.html");
@@ -36,6 +38,7 @@ namespace Moo
 			string message = ctx.Request.Data["message"] ?? string.Empty;
 
 			string cow = ProxyCowsay (cowPath, face, isThink, columns, message);
+			ctx.Response.ContentEncoding = encoding;
 			ctx.Response.End (cow);
 		}
 
