@@ -87,7 +87,6 @@ button {  width: auto; overflow: visible; }
 
 body {
 	font-family: sans-serif;
-	/*background-color: #8DC7B8;*/
 	background-color: #B5FFEB;
 }
 
@@ -131,17 +130,6 @@ header h2 {
 	margin-bottom: 1em;
 }
 
-/*
-header .o {
-	border-top: 2px solid #ED9355;
-	padding-left: -10px;
-}
-
-header .oo {
-	border-bottom: 3px solid #ED9355;
-}
-*/
-
 footer {
 	text-align: center;
 	padding: 1em;
@@ -164,7 +152,13 @@ footer {
 	margin: auto;
 	text-align: left;
 	white-space: pre;
-	margin: 1em 0 1em 0;
+	margin: 2em 0 1em 0;
+}
+
+label {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
 }
 
 @media print {

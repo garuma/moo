@@ -25,7 +25,7 @@ namespace Moo
 		static readonly char[] smallBorder = { '<', '>' };
 		static readonly char[] longBorder = { '/', '\\', '|', '|', '\\', '/', };
 
-		public const string DefaultCowPath = "cows/default.cow";
+		public const string DefaultCowPath = "cows/default";
 
 		static Dictionary<string, string> cowCache = new Dictionary<string, string> ();
 
