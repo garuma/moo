@@ -7,7 +7,13 @@ setTimeout (function () {
 		var permacow = $('#permacow');
 
 		var process = function () {
-			var postdata = { message: input.val(), cowfile: type.val () };
+			var message = input.val();
+			var thinking = false;
+			if (/^I think/i.test(message)) {
+				thinking = true;
+				message = message.replace(/I think (.)/i, function (str, p1) { return p1.toUpperCase (); });
+			}
+			var postdata = { message: message, cowfile: type.val (), isThink: thinking ? 'true' : 'false' };
 
 			permacow.attr('href', '/?permacow=' + escape(btoa(JSON.stringify(postdata))));
 
