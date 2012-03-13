@@ -39,6 +39,8 @@ namespace Moo
 
 			string cow = ProxyCowsay (cowPath, face, isThink, columns, message);
 			ctx.Response.ContentEncoding = encoding;
+			// Allow anyone to use the API from another instance
+			ctx.Response.Headers.SetNormalizedHeader ("Access-Control-Allow-Origin", "*");
 			ctx.Response.End (cow);
 		}
 
